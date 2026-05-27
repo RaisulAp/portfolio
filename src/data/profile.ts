@@ -1,0 +1,31 @@
+export const profile = {
+    name: "Raisul Agung Prabankoro",
+    shortName: "Raisul",
+    role: "Software Engineer",
+    tagline: "Building meaningful digital solutions",
+    email: "raisulagung@gmail.com",
+    github: "https://github.com/RaisulAp",
+    linkedin: "https://www.linkedin.com/in/raisulap",
+    instagram: "https://instagram.com/thesul_ap",
+    location: "Bekasi, West Java,Indonesia",
+    university: "Telkom University",
+    degree: "Informatics",
+    profileImage: "/images/profile/profile-photo.jpg",
+    casualImage: "/images/profile/profile-casual.jpg",
+    resumeUrl: "#",
+    bio: [
+        "A software engineer who combines technical expertise with a strong passion for creating meaningful and impactful technology. Graduate of Telkom University with a background in Informatics.",
+        "I believe that great software is not only about writing clean code or creating attractive interfaces, but about solving real problems and improving user experiences.",
+        "Beyond technical skills, I bring leadership experience from leading an international expedition to Mount Elbrus, Russia — developing strategic thinking, team coordination, and decision-making under extreme pressure.",
+    ],
+    philosophy:
+        "Technology should solve problems and improve people's lives.",
+    strengths: [
+        "Detail-oriented",
+        "Adaptable",
+        "Quick learner",
+        "Responsible",
+        "Collaborative",
+        "Quality-focused",
+    ],
+};
