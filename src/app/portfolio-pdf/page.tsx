@@ -109,12 +109,12 @@ export default function PortfolioPdfPage() {
                         {projects.map((project) => (
                             <div key={project.id} className="break-inside-avoid">
                                 <div className="grid gap-4 md:grid-cols-[180px_1fr] print:grid-cols-[150px_1fr]">
-                                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+                                    <div className={`relative overflow-hidden rounded-lg border border-slate-200 bg-slate-100 ${project.imageOrientation === "desktop" ? "aspect-video" : "aspect-[4/3]"}`}>
                                         <Image
                                             src={project.thumbnail}
                                             alt={project.title}
                                             fill
-                                            className="object-cover"
+                                            className={project.imageOrientation === "desktop" ? "object-contain" : "object-cover"}
                                             sizes="180px"
                                         />
                                     </div>
@@ -162,6 +162,7 @@ export default function PortfolioPdfPage() {
                                 )}
                                 <ProjectGalleryPreview
                                     title={project.title}
+                                    orientation={project.imageOrientation}
                                     images={project.gallery}
                                 />
                             </div>
@@ -210,12 +211,15 @@ function PortfolioSection({
 
 function ProjectGalleryPreview({
     title,
+    orientation,
     images,
 }: {
     title: string;
+    orientation?: "desktop" | "mobile" | "default";
     images: { src: string; alt: string }[];
 }) {
     const previewImages = images.slice(0, 4);
+    const isDesktop = orientation === "desktop";
 
     if (previewImages.length === 0) {
         return null;
@@ -228,12 +232,12 @@ function ProjectGalleryPreview({
                     key={image.src}
                     className="break-inside-avoid overflow-hidden rounded-md border border-slate-200 bg-slate-50"
                 >
-                    <div className="relative aspect-[4/3]">
+                    <div className={`relative ${isDesktop ? "aspect-video" : "aspect-[4/3]"}`}>
                         <Image
                             src={image.src}
                             alt={image.alt}
                             fill
-                            className="object-cover"
+                            className={isDesktop ? "object-contain" : "object-cover"}
                             sizes="160px"
                         />
                     </div>

@@ -1,3 +1,4 @@
+import { coffeeRetailSaas } from "./projects/coffee-retail-saas";
 import { atexExpedition } from "./projects/atex-expedition";
 import { customerBilling } from "./projects/customer-billing";
 export { defineProject } from "./projects/define-project";
@@ -21,6 +22,7 @@ export interface Project {
     subtitle: string;
     description: string;
     thumbnail: string;
+    imageOrientation?: "desktop" | "mobile" | "default";
     category: string;
     year: string;
     techStack: string[];
@@ -42,4 +44,5 @@ export const projects: Project[] = [
     customerBilling,
     fleetTrackingSystem,
     vehicleCostManagement,
+    coffeeRetailSaas,
 ];

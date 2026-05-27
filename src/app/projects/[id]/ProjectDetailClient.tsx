@@ -27,6 +27,7 @@ interface Props {
 
 export default function ProjectDetailClient({ project }: Props) {
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+    const isDesktopProject = project.imageOrientation === "desktop";
 
     return (
         <>
@@ -49,16 +50,16 @@ export default function ProjectDetailClient({ project }: Props) {
             <main className="pt-20">
                 {/* Hero */}
                 <section className="relative overflow-hidden">
-                    <div className="relative aspect-[21/9] max-h-[480px] w-full">
+                    <div className="relative aspect-[21/9] max-h-[480px] w-full bg-surface">
                         <Image
                             src={project.thumbnail}
                             alt={project.title}
                             fill
-                            className="object-cover"
+                            className={isDesktopProject ? "object-contain" : "object-cover"}
                             priority
                             sizes="100vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                        <div className={`absolute inset-0 bg-gradient-to-t from-background ${isDesktopProject ? "via-background/25" : "via-background/60"} to-transparent`} />
                     </div>
 
                     <div className="relative mx-auto -mt-32 max-w-4xl px-6">
@@ -265,19 +266,19 @@ export default function ProjectDetailClient({ project }: Props) {
                             title="Gallery"
                             delay={0.4}
                         >
-                            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3">
+                            <div className={`grid gap-4 ${isDesktopProject ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 sm:grid-cols-3"}`}>
                                 {project.gallery.map((img, i) => (
                                     <motion.button
                                         key={i}
                                         whileHover={{ scale: 1.02 }}
                                         onClick={() => setLightboxIndex(i)}
-                                        className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border cursor-pointer"
+                                        className={`group relative overflow-hidden rounded-xl border border-border cursor-pointer bg-surface ${isDesktopProject ? "aspect-video" : "aspect-[4/3]"}`}
                                     >
                                         <Image
                                             src={img.src}
                                             alt={img.alt}
                                             fill
-                                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                            className={`${isDesktopProject ? "object-contain" : "object-cover"} transition-transform duration-300 group-hover:scale-105`}
                                             sizes="(max-width: 640px) 50vw, 33vw"
                                         />
                                         <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/20" />
