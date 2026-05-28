@@ -34,13 +34,17 @@ export default function ProjectDetailClient({ project }: Props) {
             {/* Back Navigation */}
             <div className="fixed top-0 left-0 right-0 z-50 glass">
                 <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-                    <Link
-                        href="/#projects"
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                         className="inline-flex items-center gap-2 text-sm font-medium text-muted-light transition-colors hover:text-foreground"
                     >
                         <ArrowLeft size={16} />
                         Back to Projects
-                    </Link>
+                    </a>
                     <span className="text-xs font-medium text-muted uppercase tracking-wider">
                         Case Study
                     </span>
@@ -292,13 +296,17 @@ export default function ProjectDetailClient({ project }: Props) {
                 {/* Back CTA */}
                 <div className="border-t border-border">
                     <div className="mx-auto flex max-w-4xl items-center justify-center px-6 py-12">
-                        <Link
-                            href="/#projects"
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}
                             className="inline-flex items-center gap-2 rounded-xl bg-primary/10 px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary/20"
                         >
                             <ArrowLeft size={16} />
                             Back to All Projects
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </main>

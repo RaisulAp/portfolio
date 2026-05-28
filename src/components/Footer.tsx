@@ -16,7 +16,7 @@ export default function Footer() {
                 <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
                     {/* Brand */}
                     <div className="flex flex-col items-center gap-2 md:items-start">
-                        <a href="#home" className="flex items-center gap-2 text-lg font-bold">
+                        <a href="home" className="flex items-center gap-2 text-lg font-bold">
                             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-mono text-sm">
                                 R
                             </span>

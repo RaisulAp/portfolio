@@ -1,6 +1,7 @@
 import { coffeeRetailSaas } from "./projects/coffee-retail-saas";
 import { atexExpedition } from "./projects/atex-expedition";
 import { customerBilling } from "./projects/customer-billing";
+import { cheapFood } from "./projects/cheapfood";
 export { defineProject } from "./projects/define-project";
 import { fleetTrackingSystem } from "./projects/fleet-tracking-system";
 import { stafforaHrm } from "./projects/staffora-hrm";
@@ -39,10 +40,11 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-    atexExpedition,
     stafforaHrm,
     customerBilling,
     fleetTrackingSystem,
     vehicleCostManagement,
     coffeeRetailSaas,
+    atexExpedition,
+    cheapFood,
 ];

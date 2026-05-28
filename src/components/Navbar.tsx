@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-    { href: "#contact", label: "Contact" },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
+    { id: "skills", label: "Skills" },
+    { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -18,17 +18,32 @@ export default function Navbar() {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
 
+    // Smooth scroll to section
+    const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+        e.preventDefault();
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const headerHeight = 80;
+            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: elementPosition - headerHeight,
+                behavior: "smooth",
+            });
+        }
+        setIsMobileOpen(false);
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
 
-            const sections = navLinks.map((l) => l.href.replace("#", ""));
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const el = document.getElementById(sections[i]);
+            // Detect active section on scroll
+            for (let i = navLinks.length - 1; i >= 0; i--) {
+                const el = document.getElementById(navLinks[i].id);
                 if (el) {
                     const rect = el.getBoundingClientRect();
                     if (rect.top <= 120) {
-                        setActiveSection(sections[i]);
+                        setActiveSection(navLinks[i].id);
                         break;
                     }
                 }
@@ -44,15 +59,15 @@ export default function Navbar() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "glass py-3"
-                    : "bg-transparent py-5"
-                }`}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                isScrolled ? "glass py-3" : "bg-transparent py-5"
+            }`}
         >
             <nav className="mx-auto flex max-w-6xl items-center justify-between px-6">
                 {/* Logo */}
                 <a
-                    href="#home"
+                    href="#"
+                    onClick={(e) => handleSmoothScroll(e, "home")}
                     className="group flex items-center gap-2 text-lg font-bold tracking-tight"
                 >
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-mono text-sm transition-colors group-hover:bg-primary/20">
@@ -66,16 +81,18 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <ul className="hidden md:flex items-center gap-1">
                     {navLinks.map((link) => (
-                        <li key={link.href}>
+                        <li key={link.id}>
                             <a
-                                href={link.href}
-                                className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${activeSection === link.href.replace("#", "")
+                                href="#"
+                                onClick={(e) => handleSmoothScroll(e, link.id)}
+                                className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
+                                    activeSection === link.id
                                         ? "text-primary"
                                         : "text-muted-light hover:text-foreground"
-                                    }`}
+                                }`}
                             >
                                 {link.label}
-                                {activeSection === link.href.replace("#", "") && (
+                                {activeSection === link.id && (
                                     <motion.span
                                         layoutId="activeNav"
                                         className="absolute inset-0 rounded-lg bg-primary/5 border border-primary/10"
@@ -89,7 +106,8 @@ export default function Navbar() {
 
                 {/* CTA */}
                 <a
-                    href="#contact"
+                    href="#"
+                    onClick={(e) => handleSmoothScroll(e, "contact")}
                     className="hidden md:inline-flex items-center gap-2 rounded-lg bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-all hover:bg-primary/20"
                 >
                     Let&apos;s Talk
@@ -117,14 +135,15 @@ export default function Navbar() {
                     >
                         <ul className="flex flex-col px-6 py-4 gap-1">
                             {navLinks.map((link) => (
-                                <li key={link.href}>
+                                <li key={link.id}>
                                     <a
-                                        href={link.href}
-                                        onClick={() => setIsMobileOpen(false)}
-                                        className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeSection === link.href.replace("#", "")
+                                        href="#"
+                                        onClick={(e) => handleSmoothScroll(e, link.id)}
+                                        className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                                            activeSection === link.id
                                                 ? "text-primary bg-primary/5"
                                                 : "text-muted-light hover:text-foreground hover:bg-surface-lighter"
-                                            }`}
+                                        }`}
                                     >
                                         {link.label}
                                     </a>
@@ -132,8 +151,8 @@ export default function Navbar() {
                             ))}
                             <li className="pt-2">
                                 <a
-                                    href="#contact"
-                                    onClick={() => setIsMobileOpen(false)}
+                                    href="#"
+                                    onClick={(e) => handleSmoothScroll(e, "contact")}
                                     className="block rounded-lg bg-primary/10 px-4 py-3 text-center text-sm font-medium text-primary"
                                 >
                                     Let&apos;s Talk
