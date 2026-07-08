@@ -6,6 +6,8 @@ export { defineProject } from "./projects/define-project";
 import { fleetTrackingSystem } from "./projects/fleet-tracking-system";
 import { stafforaHrm } from "./projects/staffora-hrm";
 import { vehicleCostManagement } from "./projects/vehicle-cost-management";
+import { vpuCompanyProfile } from "./projects/vpu-company-profile";
+import { elrasyidTourTravel } from "./projects/elrasyid-tour-travel";
 
 export interface ProjectImage {
     src: string;
@@ -47,4 +49,6 @@ export const projects: Project[] = [
     coffeeRetailSaas,
     atexExpedition,
     cheapFood,
+    vpuCompanyProfile,
+    elrasyidTourTravel,
 ];
