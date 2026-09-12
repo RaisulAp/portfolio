@@ -2,13 +2,17 @@ import { defineProject } from "./define-project";
 
 export const cheapFood = defineProject({
     id: "cheapfood",
+    slug: "cheapfood",
     title: "CheapFood — Nearby Food & Store Discovery Platform",
     subtitle: "Modern Location-Based Marketplace for Food Discovery & Seller Management",
     description:
         "Developed a modern web-based platform designed to help users discover nearby food and local stores efficiently, with dual-role ecosystem for customers and sellers managing their digital storefronts.",
+    role: "Full-Stack Web Engineer",
+    category: "Web & Enterprise Platforms",
+    keyMetric: "Location-Based Discovery & Multi-Role Commerce Ecosystem",
+    status: "Web App",
     thumbnail: "/images/projects/cheapfood/Home.png",
     imageOrientation: "default",
-    category: "Marketplace Web App",
     year: "2024",
     techStack: [
         "FastAPI",

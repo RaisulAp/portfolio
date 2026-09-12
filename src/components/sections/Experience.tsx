@@ -19,7 +19,7 @@ const typeColors = {
 
 export default function Experience() {
     return (
-        <section id="experience" className="relative py-24 lg:py-32">
+        <section id="experience" className="relative overflow-hidden py-24 lg:py-32">
             {/* Background */}
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/3 blur-[150px]" />

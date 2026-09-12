@@ -2,13 +2,17 @@ import { defineProject } from "./define-project";
 
 export const elrasyidTourTravel = defineProject({
     id: "elrasyid-tour-travel",
+    slug: "elrasyid-tour-travel",
     title: "ELRASYID Tour & Travel — Umroh Booking & Information Website",
     subtitle: "Marketing & Package-Comparison Website for an Umroh Travel Agency",
     description:
         "Developed a Next.js marketing website for ELRASYID, a Sidoarjo-based umroh (Islamic pilgrimage) tour operator, letting prospective jamaah compare packages, check departure schedules, and book directly through WhatsApp.",
+    role: "Full-Stack Web Engineer",
+    category: "Web & Enterprise Platforms",
+    keyMetric: "Direct WhatsApp Booking Funnel for 5 Package Tiers",
+    status: "Client Work",
     thumbnail: "/images/projects/elrasyid/Elrasyid.png",
     imageOrientation: "desktop",
-    category: "Travel Agency Website",
     year: "2026",
     techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
     overview:

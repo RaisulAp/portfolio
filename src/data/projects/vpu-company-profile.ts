@@ -2,13 +2,17 @@ import { defineProject } from "./define-project";
 
 export const vpuCompanyProfile = defineProject({
     id: "vpu-company-profile",
+    slug: "vpu-company-profile",
     title: "PT. Visi Prima Utama (VPU) — Company Profile Website",
     subtitle: "Corporate Website for an Indonesian IT Consulting Firm Serving 50+ Enterprise & Government Clients",
     description:
         "Built a modern company profile website for PT. Visi Prima Utama (VPU), an Indonesian IT consulting firm founded in 2014, showcasing their track record across 52 state-owned, government, and private-sector organizations.",
+    role: "Frontend Web Engineer",
+    category: "Web & Enterprise Platforms",
+    keyMetric: "52+ Enterprise & BUMN Client Showcase",
+    status: "Client Work",
     thumbnail: "/images/projects/vpu/vpu.png",
     imageOrientation: "desktop",
-    category: "Company Profile Website",
     year: "2026",
     techStack: [
         "HTML5",

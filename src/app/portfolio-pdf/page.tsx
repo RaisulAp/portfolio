@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function PortfolioPdfPage() {
     const primarySkills = skillCategories.flatMap((category) =>
-        category.skills.slice(0, 4).map((skill) => skill.name),
+        category.skills.slice(0, 4),
     );
 
     return (
@@ -178,7 +178,7 @@ export default function PortfolioPdfPage() {
                                     {category.title}
                                 </h3>
                                 <p className="mt-2 text-sm leading-6 text-slate-700">
-                                    {category.skills.map((skill) => skill.name).join(", ")}
+                                    {category.skills.join(", ")}
                                 </p>
                             </div>
                         ))}

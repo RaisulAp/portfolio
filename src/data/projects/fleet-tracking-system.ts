@@ -2,12 +2,16 @@ import { defineProject } from "./define-project";
 
 export const fleetTrackingSystem = defineProject({
     id: "fleet-tracking-system",
+    slug: "fleet-tracking-system",
     title: "Fleet Tracking System",
     subtitle: "Web-Based Tugboat Monitoring Platform",
     description:
         "Developed a web-based Fleet Tracking System for tugboat operations, combining real-time monitoring, fleet management, role-based access, and AI detection summaries in one centralized dashboard.",
-    thumbnail: "/images/projects/fleet-tracking/Dashboard.png",
-    category: "Enterprise Web App",
+    role: "Full-Stack Web Engineer",
+    category: "Web & Enterprise Platforms",
+    keyMetric: "Centralized Tugboat Fleet Monitoring & AI Safety Detection",
+    status: "Enterprise",
+    thumbnail: "/images/projects/fleet-tracking/Thumbnail.png",
     year: "2026",
     techStack: [
         "Laravel",

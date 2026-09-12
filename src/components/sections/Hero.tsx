@@ -31,12 +31,15 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface-light/50 px-4 py-2 text-sm text-muted-light">
+                        <div className="mb-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-border bg-surface-light/70 px-4 py-2 text-xs sm:text-sm text-muted-light backdrop-blur-md">
                             <span className="relative flex h-2 w-2">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                             </span>
-                            Available for opportunities
+                            <span className="font-semibold text-foreground tracking-wide">
+                                Software Engineer — Mobile &amp; Backend Architecture
+                            </span>
+                            <span className="hidden sm:inline text-muted">· Open for High-Impact Roles</span>
                         </div>
                     </motion.div>
 
@@ -47,35 +50,38 @@ export default function Hero() {
                         className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
                     >
                         Hi, I&apos;m{" "}
-                        <span className="gradient-text">{profile.shortName}</span>
+                        <span className="gradient-text">{profile.shortName}</span>.
                     </motion.h1>
 
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="mb-2 text-xl font-medium text-muted-light sm:text-2xl"
+                        className="mb-3 text-xl font-semibold text-slate-100 sm:text-2xl lg:text-3xl tracking-tight"
                     >
-                        {profile.role}
+                        Engineering High-Performance Mobile &amp; Resilient Backend Systems
                     </motion.p>
 
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="mb-4 flex items-center justify-center gap-1.5 text-sm text-muted lg:justify-start"
+                        transition={{ duration: 0.6, delay: 0.25 }}
+                        className="mb-4 flex flex-wrap items-center justify-center gap-2 text-sm text-muted lg:justify-start"
                     >
-                        <MapPin size={14} />
-                        {profile.location} · {profile.university}
+                        <span className="flex items-center gap-1.5"><MapPin size={14} className="text-primary" />{profile.location}</span>
+                        <span>·</span>
+                        <span className="text-muted-light font-medium">PT. Gerbang Data Indonesia</span>
+                        <span>·</span>
+                        <span>{profile.university}</span>
                     </motion.p>
 
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.35 }}
-                        className="mb-8 max-w-lg text-base leading-relaxed text-muted-light sm:text-lg lg:mx-0 mx-auto"
+                        className="mb-8 max-w-xl text-base leading-relaxed text-muted-light sm:text-lg lg:mx-0 mx-auto"
                     >
-                        {profile.bio[0]}
+                        Fullstack Software Engineer specialized in architecting responsive cross-platform Flutter applications and scalable Golang / Node.js backend infrastructure. Proven track record eliminating operational bottlenecks across real-time IoT telemetry, multi-tenant healthcare platforms, and high-concurrency payment integrations.
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -87,9 +93,9 @@ export default function Hero() {
                     >
                         <a
                             href="#projects"
-                            className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
+                            className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
                         >
-                            View My Work
+                            Lihat Proyek Unggulan
                             <ArrowDown
                                 size={16}
                                 className="transition-transform group-hover:translate-y-0.5"
@@ -97,18 +103,18 @@ export default function Hero() {
                         </a>
                         <a
                             href="#contact"
-                            className="inline-flex items-center gap-2 rounded-xl border border-border px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-surface-light"
+                            className="inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-6 py-3.5 text-sm font-semibold text-primary transition-all hover:bg-primary/20 hover:border-primary"
                         >
-                            Get In Touch
+                            Mari Berdiskusi
                         </a>
                         <a
                             href="/portfolio-pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-xl border border-border px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-surface-light"
+                            className="inline-flex items-center gap-2 rounded-xl border border-border px-6 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-surface-light"
                         >
                             <FileDown size={16} />
-                            Download PDF
+                            ATS CV (PDF)
                         </a>
                     </motion.div>
 

@@ -2,12 +2,16 @@ import { defineProject } from "./define-project";
 
 export const customerBilling = defineProject({
     id: "customer-billing",
+    slug: "customer-billing",
     title: "Customer Billing Mobile App",
     subtitle: "Mobile Billing System for ISP Customers",
     description:
         "Developed a Flutter-based mobile Customer Billing System enabling ISP customers to access billing information, payment history, and receive push notifications.",
-    thumbnail: "/images/projects/billing/Home.jpeg",
-    category: "Mobile App",
+    role: "Mobile Software Engineer",
+    category: "Mobile Applications",
+    keyMetric: "24/7 Self-Service Invoicing & Push Notifications",
+    status: "Production",
+    thumbnail: "/images/projects/billing/thumbnail.png",
     year: "2025",
     techStack: [
         "Flutter",

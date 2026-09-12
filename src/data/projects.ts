@@ -8,6 +8,20 @@ import { stafforaHrm } from "./projects/staffora-hrm";
 import { vehicleCostManagement } from "./projects/vehicle-cost-management";
 import { vpuCompanyProfile } from "./projects/vpu-company-profile";
 import { elrasyidTourTravel } from "./projects/elrasyid-tour-travel";
+import { simrsVitacore } from "./projects/simrs-vitacore";
+import { automatedCvScreening } from "./projects/automated-cv-screening";
+
+export type ProjectCategory =
+    | "Mobile Applications"
+    | "Web & Enterprise Platforms"
+    | "Special & Leadership Initiatives";
+
+export const PROJECT_CATEGORIES = [
+    "All",
+    "Mobile Applications",
+    "Web & Enterprise Platforms",
+    "Special & Leadership Initiatives",
+] as const;
 
 export interface ProjectImage {
     src: string;
@@ -21,14 +35,19 @@ export interface ProjectLink {
 
 export interface Project {
     id: string;
+    slug?: string;
     title: string;
     subtitle: string;
     description: string;
-    thumbnail: string;
-    imageOrientation?: "desktop" | "mobile" | "default";
-    category: string;
+    role: string;
+    category: ProjectCategory;
+    keyMetric: string;
+    status: string;
     year: string;
     techStack: string[];
+    thumbnail: string;
+    imageOrientation?: "desktop" | "mobile" | "default";
+    links?: ProjectLink[];
     overview: string;
     background: string;
     goals: string[];
@@ -38,12 +57,13 @@ export interface Project {
     impact: string[];
     lessonsLearned: string[];
     gallery: ProjectImage[];
-    links?: ProjectLink[];
 }
 
 export const projects: Project[] = [
+    simrsVitacore,
     stafforaHrm,
     customerBilling,
+    automatedCvScreening,
     fleetTrackingSystem,
     vehicleCostManagement,
     coffeeRetailSaas,

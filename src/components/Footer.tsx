@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, Heart } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons";
 import { profile } from "@/data/profile";
@@ -16,14 +17,14 @@ export default function Footer() {
                 <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
                     {/* Brand */}
                     <div className="flex flex-col items-center gap-2 md:items-start">
-                        <a href="home" className="flex items-center gap-2 text-lg font-bold">
+                        <Link href="/#home" className="flex items-center gap-2 text-lg font-bold">
                             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-mono text-sm">
                                 R
                             </span>
                             <span>
                                 Raisul<span className="text-primary">.</span>
                             </span>
-                        </a>
+                        </Link>
                         <p className="text-sm text-muted">
                             Software Engineer — Building meaningful digital solutions
                         </p>
@@ -50,12 +51,12 @@ export default function Footer() {
                 <div className="section-divider my-8" />
 
                 {/* Bottom */}
-                <div className="flex flex-col items-center gap-2 text-sm text-muted md:flex-row md:justify-between">
-                    <p>© {new Date().getFullYear()} Raisul Agung Prabankoro. All rights reserved.</p>
-                    {/* <p className="flex items-center gap-1">
+                {/* <div className="flex flex-col items-center gap-2 text-sm text-muted md:flex-row md:justify-between">
+                    {/* <p>© {new Date().getFullYear()} Raisul Agung Prabankoro. All rights reserved.</p> */}
+                {/* <p className="flex items-center gap-1">
                         Built with <Heart size={14} className="text-primary" /> using Next.js & Tailwind CSS
-                    </p> */}
-                </div>
+                    </p> 
+                </div> */}
             </div>
         </footer>
     );

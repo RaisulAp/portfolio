@@ -2,12 +2,16 @@ import { defineProject } from "./define-project";
 
 export const vehicleCostManagement = defineProject({
     id: "vehicle-cost-management",
+    slug: "vehicle-cost-management",
     title: "Vehicle Tracking & Cost Management System",
     subtitle: "Mobile Fleet Operations Platform",
     description:
         "Developed a full-stack mobile fleet operations platform for real-time vehicle tracking, driver reporting, fuel monitoring, maintenance management, and transportation cost analysis.",
+    role: "Full-Stack Mobile Engineer",
+    category: "Mobile Applications",
+    keyMetric: "Fleet Cost Visibility & Automated Fuel Consumption Audit",
+    status: "Enterprise",
     thumbnail: "/images/projects/vehicle-cost-management/Dashboard.jpeg",
-    category: "Mobile App",
     year: "2025",
     techStack: [
         "Flutter",

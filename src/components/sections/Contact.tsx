@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Send, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Send, MapPin, ArrowUpRight, Copy, Check } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons";
 import SectionHeading from "@/components/SectionHeading";
 import { profile } from "@/data/profile";
+import { useState } from "react";
 
 const contactLinks = [
     {
@@ -42,8 +43,20 @@ const contactLinks = [
 ];
 
 export default function Contact() {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(profile.email);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy email to clipboard", err);
+        }
+    };
+
     return (
-        <section id="contact" className="relative py-24 lg:py-32">
+        <section id="contact" className="relative overflow-hidden py-24 lg:py-32">
             {/* Background */}
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5 blur-[150px]" />
@@ -53,7 +66,7 @@ export default function Contact() {
                 <SectionHeading
                     label="Contact"
                     title="Let's Work Together"
-                    description="I'm always open to discussing new opportunities, interesting projects, or just having a conversation about technology."
+                    description="I'm always open to discussing new opportunities, enterprise systems development, and technical consulting."
                 />
 
                 <div className="grid gap-8 md:grid-cols-2">
@@ -73,7 +86,7 @@ export default function Contact() {
                                 Got a project in mind?
                             </h3>
                             <p className="mb-6 text-sm leading-relaxed text-muted-light">
-                                Whether you need a mobile app, web platform, or enterprise solution — I&apos;d love to hear about it. Let&apos;s turn your ideas into reality.
+                                Whether you need a cross-platform mobile application, scalable web platform, or enterprise architecture solution — let&apos;s collaborate to build something remarkable.
                             </p>
                             <div className="flex items-center gap-2 text-sm text-muted">
                                 <MapPin size={14} />
@@ -81,13 +94,32 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <a
-                            href={`mailto:${profile.email}`}
-                            className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
-                        >
-                            <Mail size={18} />
-                            Send Me an Email
-                        </a>
+                        <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                            <a
+                                href={`mailto:${profile.email}`}
+                                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
+                            >
+                                <Mail size={18} />
+                                Send Email
+                            </a>
+                            <button
+                                onClick={handleCopyEmail}
+                                type="button"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface-light/60 px-5 py-3.5 text-sm font-semibold text-foreground transition-all hover:border-primary/40 hover:bg-surface-light"
+                            >
+                                {copied ? (
+                                    <>
+                                        <Check size={18} className="text-emerald-400" />
+                                        <span className="text-emerald-400">Copied!</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Copy size={18} className="text-muted-light" />
+                                        <span>Copy Email</span>
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </motion.div>
 
                     {/* Right - Contact Links */}

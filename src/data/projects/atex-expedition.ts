@@ -2,12 +2,16 @@ import { defineProject } from "./define-project";
 
 export const atexExpedition = defineProject({
     id: "atex-expedition",
+    slug: "atex-expedition",
     title: "ATEX 2024 International Expedition",
     subtitle: "Leadership & Expedition Management Mount Elbrus, Russia",
     description:
         "Led an international mountaineering expedition to Mount Elbrus, Europe's highest peak, as the Expedition Leader of ASTACALA Tel-U International Expedition 2024.",
+    role: "Expedition Leader",
+    category: "Special & Leadership Initiatives",
+    keyMetric: "100% Summit Success Elbrus (5,642m) in -20°C & Zero Incidents",
+    status: "International Initiative",
     thumbnail: "/images/projects/atex/summit.jpg",
-    category: "Leadership",
     year: "2024",
     techStack: [
         "Strategic Planning",

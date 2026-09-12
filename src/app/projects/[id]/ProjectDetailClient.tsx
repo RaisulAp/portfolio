@@ -17,9 +17,12 @@ import {
     ChevronRight,
     ExternalLink,
     X,
+    Sparkles,
+    Briefcase,
+    Mail,
 } from "lucide-react";
-import { Project } from "@/data/projects";
-import { useState } from "react";
+import { Project, projects } from "@/data/projects";
+import { useState, useMemo } from "react";
 
 interface Props {
     project: Project;
@@ -28,6 +31,13 @@ interface Props {
 export default function ProjectDetailClient({ project }: Props) {
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
     const isDesktopProject = project.imageOrientation === "desktop";
+
+    const currentIndex = useMemo(() => {
+        return projects.findIndex((p) => p.id === project.id);
+    }, [project.id]);
+
+    const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : projects[projects.length - 1];
+    const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : projects[0];
 
     return (
         <>
@@ -47,31 +57,48 @@ export default function ProjectDetailClient({ project }: Props) {
                 </div>
             </div>
 
-            <main className="pt-20">
+            <main className="pt-24 pb-16">
                 {/* Hero */}
-                <section className="relative overflow-hidden">
-                    <div className="relative aspect-[21/9] max-h-[480px] w-full bg-surface">
-                        <Image
-                            src={project.thumbnail}
-                            alt={project.title}
-                            fill
-                            className={isDesktopProject ? "object-contain" : "object-cover"}
-                            priority
-                            sizes="100vw"
-                        />
-                        <div className={`absolute inset-0 bg-gradient-to-t from-background ${isDesktopProject ? "via-background/25" : "via-background/60"} to-transparent`} />
+                <section className="relative mx-auto max-w-5xl px-6">
+                    {/* Hero Showcase Container */}
+                    <div className="relative mb-12 w-full overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-b from-surface-light/40 to-surface/20 p-4 sm:p-8 backdrop-blur-md">
+                        {/* Ambient Glow di belakang gambar */}
+                        <div className="absolute -top-24 left-1/2 -z-10 h-72 w-96 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl pointer-events-none" />
+
+                        {/* Frame Showcase Responsif */}
+                        <div className="relative mx-auto flex h-[260px] sm:h-[380px] md:h-[460px] w-full items-center justify-center">
+                            <Image
+                                src={project.thumbnail}
+                                alt={project.title}
+                                fill
+                                priority
+                                sizes="(max-width: 1200px) 100vw, 1200px"
+                                className="object-contain object-center drop-shadow-2xl transition-all duration-300"
+                            />
+                        </div>
                     </div>
 
-                    <div className="relative mx-auto -mt-32 max-w-4xl px-6">
+                    <div className="relative mx-auto max-w-4xl">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <div className="mb-4 flex flex-wrap items-center gap-3">
-                                <span className="rounded-lg bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                            <div className="mb-4 flex flex-wrap items-center gap-2.5">
+                                <span className="rounded-lg border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                                     {project.category}
                                 </span>
+                                {project.role && (
+                                    <span className="flex items-center gap-1.5 rounded-lg border border-border bg-surface-light px-3 py-1 text-xs font-medium text-muted-light">
+                                        <Briefcase size={12} className="text-primary" />
+                                        {project.role}
+                                    </span>
+                                )}
+                                {project.status && (
+                                    <span className="rounded-lg border border-border bg-surface-light px-3 py-1 text-xs font-medium text-muted">
+                                        {project.status}
+                                    </span>
+                                )}
                                 <span className="flex items-center gap-1.5 text-xs text-muted">
                                     <Calendar size={12} />
                                     {project.year}
@@ -81,9 +108,16 @@ export default function ProjectDetailClient({ project }: Props) {
                             <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
                                 {project.title}
                             </h1>
-                            <p className="mb-6 text-lg text-muted-light sm:text-xl">
+                            <p className="mb-4 text-lg text-muted-light sm:text-xl">
                                 {project.subtitle}
                             </p>
+
+                            {project.keyMetric && (
+                                <div className="mb-6 inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-xs sm:text-sm font-medium text-primary shadow-sm backdrop-blur-md">
+                                    <Sparkles size={16} className="shrink-0 text-accent" />
+                                    <span>Key Impact: <strong className="font-semibold">{project.keyMetric}</strong></span>
+                                </div>
+                            )}
 
                             {/* Tech Stack */}
                             <div className="flex flex-wrap gap-2">
@@ -289,16 +323,93 @@ export default function ProjectDetailClient({ project }: Props) {
                     )}
                 </div>
 
-                {/* Back CTA */}
-                <div className="border-t border-border">
-                    <div className="mx-auto flex max-w-4xl items-center justify-center px-6 py-12">
+                {/* Previous & Next Project Navigation */}
+                <div className="mx-auto max-w-4xl px-6 pb-16">
+                    <div className="mb-4 flex items-center justify-between">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                            Project Navigation
+                        </span>
                         <Link
                             href="/all-projects"
-                            className="inline-flex items-center gap-2 rounded-xl bg-primary/10 px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary/20"
+                            className="text-xs font-medium text-primary hover:underline"
                         >
-                            <ArrowLeft size={16} />
-                            Back to All Projects
+                            View All ({projects.length})
                         </Link>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                        {/* Previous */}
+                        {prevProject && (
+                            <Link
+                                href={`/projects/${prevProject.id}`}
+                                className="group flex flex-col justify-between rounded-2xl border border-border bg-surface-light/30 p-5 transition-all hover:border-primary/40 hover:bg-surface-light/60 hover:shadow-lg hover:shadow-primary/5"
+                            >
+                                <div>
+                                    <div className="mb-2 flex items-center gap-1.5 text-xs text-muted">
+                                        <ChevronLeft size={14} className="text-primary transition-transform group-hover:-translate-x-1" />
+                                        <span>Previous Project</span>
+                                    </div>
+                                    <h4 className="text-base font-bold text-foreground transition-colors group-hover:text-primary">
+                                        {prevProject.title}
+                                    </h4>
+                                    <p className="mt-1 text-xs text-muted-light line-clamp-1">
+                                        {prevProject.category}
+                                    </p>
+                                </div>
+                            </Link>
+                        )}
+
+                        {/* Next */}
+                        {nextProject && (
+                            <Link
+                                href={`/projects/${nextProject.id}`}
+                                className="group flex flex-col justify-between rounded-2xl border border-border bg-surface-light/30 p-5 text-right transition-all hover:border-primary/40 hover:bg-surface-light/60 hover:shadow-lg hover:shadow-primary/5"
+                            >
+                                <div>
+                                    <div className="mb-2 flex items-center justify-end gap-1.5 text-xs text-muted">
+                                        <span>Next Project</span>
+                                        <ChevronRight size={14} className="text-primary transition-transform group-hover:translate-x-1" />
+                                    </div>
+                                    <h4 className="text-base font-bold text-foreground transition-colors group-hover:text-primary">
+                                        {nextProject.title}
+                                    </h4>
+                                    <p className="mt-1 text-xs text-muted-light line-clamp-1">
+                                        {nextProject.category}
+                                    </p>
+                                </div>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+
+                {/* Conversion CTA Banner */}
+                <div className="border-t border-border bg-surface-light/20">
+                    <div className="mx-auto max-w-4xl px-6 py-16 text-center">
+                        <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                            <Sparkles size={24} />
+                        </div>
+                        <h3 className="mb-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                            Interested in working together?
+                        </h3>
+                        <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-muted-light sm:text-base">
+                            I am currently open to software engineering opportunities, enterprise platform developments, and technical consulting.
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-4">
+                            <Link
+                                href="/#contact"
+                                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
+                            >
+                                <Mail size={16} />
+                                Get in Touch
+                            </Link>
+                            <Link
+                                href="/all-projects"
+                                className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface-light/60 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-surface-light"
+                            >
+                                <ArrowLeft size={16} />
+                                Back to All Projects
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </main>

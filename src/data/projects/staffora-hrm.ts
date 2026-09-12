@@ -2,12 +2,17 @@ import { defineProject } from "./define-project";
 
 export const stafforaHrm = defineProject({
     id: "staffora-hrm",
+    slug: "staffora-hrm",
     title: "Staffora HRM Platform",
     subtitle: "Enterprise HR Management System for Attendance & Payroll",
     description:
         "Built Staffora, a comprehensive mobile HRM platform handling attendance, payroll, KPI monitoring, and leave management for enterprise digital transformation.",
-    thumbnail: "/images/projects/staffora/Home.jpeg",
-    category: "Enterprise App",
+    role: "Lead Mobile Developer",
+    category: "Mobile Applications",
+    keyMetric: "40% HR Admin Time Efficiency & GPS Geofencing",
+    status: "Production / Enterprise",
+    thumbnail: "/images/projects/staffora/thumbnail.jpg",
+    imageOrientation: "desktop",
     year: "2024",
     techStack: [
         "Flutter",

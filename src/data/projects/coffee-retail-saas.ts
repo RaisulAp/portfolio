@@ -2,13 +2,17 @@ import { defineProject } from "./define-project";
 
 export const coffeeRetailSaas = defineProject({
     id: "coffee-retail-saas",
+    slug: "coffee-retail-saas",
     title: "Coffee Retail SaaS Platform",
     subtitle: "Flexible Web-Based Sales & Store Management System",
     description:
         "Developed a Laravel-based SaaS platform for coffee retail businesses, combining a customer-facing storefront and an admin management dashboard for products, orders, revenue, and dynamic store configuration.",
+    role: "Lead Full-Stack Developer",
+    category: "Web & Enterprise Platforms",
+    keyMetric: "Dual-Engine Architecture: Public Storefront + Dynamic Admin CMS",
+    status: "Production SaaS",
     thumbnail: "/images/projects/coffee-retail-saas/Dashboard.png",
     imageOrientation: "desktop",
-    category: "SaaS Web App",
     year: "2026",
     techStack: [
         "Laravel",

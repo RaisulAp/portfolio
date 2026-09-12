@@ -16,18 +16,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Raisul Agung Prabankoro — Software Engineer",
+    default: "Raisul Agung Prabankoro — Software Engineer | Mobile & Backend Architecture",
     template: "%s | Raisul Agung Prabankoro",
   },
   description:
-    "Software Engineer specializing in mobile and web development. Building meaningful digital solutions with Flutter, Laravel, and modern tech stacks.",
+    "Software Engineer specializing in high-performance Flutter mobile applications and scalable backend architecture (Golang, Node.js, PostgreSQL, telemetry, biometric AI).",
   keywords: [
-    "Software Engineer",
-    "Flutter Developer",
-    "Laravel Developer",
-    "Mobile App Developer",
-    "Full Stack Developer",
     "Raisul Agung Prabankoro",
+    "Software Engineer",
+    "Mobile & Backend Architecture",
+    "Flutter Developer",
+    "Golang Developer",
+    "Node.js Developer",
+    "Fullstack Developer Indonesia",
+    "IoT Telemetry",
+    "SIMRS VitaCore",
+    "Astacala Mount Elbrus",
   ],
   authors: [{ name: "Raisul Agung Prabankoro" }],
   creator: "Raisul Agung Prabankoro",
@@ -36,15 +40,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Raisul Agung Prabankoro",
-    title: "Raisul Agung Prabankoro — Software Engineer",
+    title: "Raisul Agung Prabankoro — Software Engineer | Mobile & Backend Architecture",
     description:
-      "Software Engineer specializing in mobile and web development. Building meaningful digital solutions.",
+      "Fullstack Software Engineer architecting high-performance Flutter mobile apps and scalable backend infrastructure with Golang, Node.js, and PostgreSQL.",
     images: [
       {
         url: "/images/profile/profile-photo.jpg",
         width: 800,
         height: 800,
-        alt: "Raisul Agung Prabankoro",
+        alt: "Raisul Agung Prabankoro — Software Engineer",
       },
     ],
   },
@@ -76,6 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
     >
       <body className="min-h-screen bg-background text-foreground">

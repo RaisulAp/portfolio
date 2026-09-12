@@ -1,21 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import { projects } from "@/data/projects";
+import { projects, PROJECT_CATEGORIES } from "@/data/projects";
 import { useState, useMemo } from "react";
 
 export default function Projects() {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-    // Get unique categories
-    const categories = useMemo(() => {
-        const cats = new Set(projects.map((p) => p.category));
-        return ["All", ...Array.from(cats)];
-    }, []);
+    const categories = PROJECT_CATEGORIES;
 
     // Filter and slice projects
     const filteredProjects = useMemo(() => {
@@ -29,7 +25,7 @@ export default function Projects() {
     const hasMoreProjects = projects.length > 6;
 
     return (
-        <section id="projects" className="relative py-24 lg:py-32">
+        <section id="projects" className="relative overflow-hidden py-24 lg:py-32">
             <div className="mx-auto max-w-6xl px-6">
                 <SectionHeading
                     label="Projects"
@@ -46,8 +42,8 @@ export default function Projects() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${selectedCategory === category
-                                    ? "border-primary/50 bg-primary/10 text-primary shadow-lg shadow-primary/20"
-                                    : "border border-border bg-surface-light/30 text-muted-light hover:border-primary/30 hover:bg-surface-light/60"
+                                ? "border-primary/50 bg-primary/10 text-primary shadow-lg shadow-primary/20"
+                                : "border border-border bg-surface-light/30 text-muted-light hover:border-primary/30 hover:bg-surface-light/60"
                                 }`}
                         >
                             {category}
@@ -73,35 +69,48 @@ export default function Projects() {
                                         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface-light/30 transition-all hover:border-primary/20 hover:bg-surface-light/60 hover:shadow-xl hover:shadow-primary/5"
                                     >
                                         {/* Thumbnail */}
-                                        <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+                                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface flex items-center justify-center">
                                             <Image
                                                 src={project.thumbnail}
                                                 alt={project.title}
                                                 fill
-                                                className={`${isDesktop ? "object-contain p-2" : "object-cover"} transition-transform duration-500 group-hover:scale-105`}
+                                                priority={i === 0}
+                                                className={`${isDesktop ? "object-contain p-2" : "object-cover object-center"} transition-transform duration-500 group-hover:scale-105`}
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60" />
-                                            {/* Category badge */}
-                                            <div className="absolute top-4 left-4">
-                                                <span className="rounded-lg bg-background/80 px-3 py-1 text-xs font-semibold text-primary backdrop-blur-sm">
+                                            <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent pointer-events-none" />
+                                            {/* Category & Status badges */}
+                                            <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                                                <span className="rounded-lg border border-primary/20 bg-background/85 px-2.5 py-1 text-[11px] font-semibold text-primary backdrop-blur-md">
                                                     {project.category}
                                                 </span>
+                                                {project.status && (
+                                                    <span className="rounded-lg border border-border bg-background/85 px-2 py-1 text-[10px] font-medium text-muted-light backdrop-blur-md">
+                                                        {project.status}
+                                                    </span>
+                                                )}
                                             </div>
                                             {/* Arrow */}
-                                            <div className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-background/80 text-muted-light opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100">
+                                            <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg bg-background/80 text-muted-light opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100">
                                                 <ArrowUpRight size={16} />
                                             </div>
                                         </div>
 
                                         {/* Content */}
                                         <div className="flex flex-1 flex-col p-6">
-                                            <div className="mb-2 flex items-center gap-2">
-                                                <span className="text-xs text-muted">{project.year}</span>
+                                            <div className="mb-2.5 flex items-center justify-between text-xs text-muted">
+                                                <span className="font-medium text-primary/90">{project.role || "Software Engineer"}</span>
+                                                <span>{project.year}</span>
                                             </div>
                                             <h3 className="mb-2 text-lg font-bold text-foreground transition-colors group-hover:text-primary">
                                                 {project.title}
                                             </h3>
+                                            {project.keyMetric && (
+                                                <div className="mb-3 inline-flex items-center gap-1.5 rounded-md border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-medium text-primary">
+                                                    <Sparkles size={12} className="shrink-0 text-accent" />
+                                                    <span className="line-clamp-1">{project.keyMetric}</span>
+                                                </div>
+                                            )}
                                             <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-light line-clamp-3">
                                                 {project.description}
                                             </p>
