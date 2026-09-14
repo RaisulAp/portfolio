@@ -8,8 +8,8 @@ import { stafforaHrm } from "./projects/staffora-hrm";
 import { vehicleCostManagement } from "./projects/vehicle-cost-management";
 import { vpuCompanyProfile } from "./projects/vpu-company-profile";
 import { elrasyidTourTravel } from "./projects/elrasyid-tour-travel";
-import { simrsVitacore } from "./projects/simrs-vitacore";
-import { automatedCvScreening } from "./projects/automated-cv-screening";
+// import { simrsVitacore } from "./projects/simrs-vitacore";
+// import { automatedCvScreening } from "./projects/automated-cv-screening";
 
 export type ProjectCategory =
     | "Mobile Applications"
@@ -60,10 +60,10 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-    simrsVitacore,
+    // simrsVitacore,
     stafforaHrm,
     customerBilling,
-    automatedCvScreening,
+    // automatedCvScreening,
     fleetTrackingSystem,
     vehicleCostManagement,
     coffeeRetailSaas,
